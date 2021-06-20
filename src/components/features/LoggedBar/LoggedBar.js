@@ -6,20 +6,15 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import { Container, Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
-import { Header } from '../Header/Header';
+import styles from './LoggedBar.module.scss';
 
-import styles from './MainLayout.module.scss';
-
-const Component = ({className, children}) => (
+const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
-    <Header />
-    <Container>
-      <Paper>
-        {children}
-      </Paper>
-    </Container>
+    <Button color="inherit" href="#">My posts</Button>
+    <Button color="inherit" href="#">Logout</Button>
+    {children}
   </div>
 );
 
@@ -39,7 +34,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MainLayout,
-  // Container as MainLayout,
-  Component as MainLayoutComponent,
+  Component as LoggedBar,
+  // Container as LoggedBar,
+  Component as LoggedBarComponent,
 };

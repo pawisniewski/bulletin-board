@@ -1,4 +1,12 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .title {
+      margin-right: auto;
+    }
+}
