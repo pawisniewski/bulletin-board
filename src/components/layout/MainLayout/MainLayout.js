@@ -6,7 +6,7 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import { Container, Paper } from '@material-ui/core';
+import Container from '@material-ui/core/container';
 
 import { Header } from '../Header/Header';
 
@@ -16,9 +16,7 @@ const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <Header />
     <Container>
-      <Paper>
-        {children}
-      </Paper>
+      {children}
     </Container>
   </div>
 );

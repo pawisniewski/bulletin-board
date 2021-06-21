@@ -38,6 +38,7 @@ const Component = ({ className, user, login, logout }) => {
         </Toolbar>
       </AppBar>
       <Toolbar />
+      <Toolbar />
     </div>
   );
 };
