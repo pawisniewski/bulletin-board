@@ -1203,6 +1203,11 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
+"@pawel_wisniewski/id-generator@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@pawel_wisniewski/id-generator/-/id-generator-1.0.3.tgz#032fd821c85733a823823d57cafb2b979b568f99"
+  integrity sha512-thAHe4LpFhZnhQHsQ03V9tWWXoAgX8jdzcbLYNe9D7cjff9P6N0OrUNU0/Pe8lmhdY3oQVubA/Y4cjwj/j6LQQ==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

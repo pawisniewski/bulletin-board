@@ -1,4 +1,9 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+    .button {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 16px;
+    }
+}

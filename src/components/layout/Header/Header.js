@@ -6,7 +6,9 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getUser, login, logout } from '../../../redux/userRedux.js';
 
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { AppBar, Toolbar, Link } from '@material-ui/core';
 
 import { LoggedBar } from '../../features/LoggedBar/LoggedBar';
 import { UnloggedBar } from '../../features/UnloggedBar/UnloggedBar';
@@ -18,7 +20,7 @@ const Component = ({ className, user, login, logout }) => {
 
   const selectUser = ({target}) => {
     if (target.value) {
-      login({type: target.value});
+      login({ type: target.value, email: 'author1@example.com' });
     } else logout();
   };
   
@@ -26,9 +28,9 @@ const Component = ({ className, user, login, logout }) => {
     <div className={clsx(className, styles.root)}>
       <AppBar position="fixed">
         <Toolbar className={styles.toolbar}>
-          <Typography variant="h6" className={styles.title}>
-          Bulletin Board
-          </Typography>
+          <Link component={RouterLink} to="/" variant="h6" color="inherit" underline="none" className={styles.title}>
+            Bulletin Board
+          </Link>
           <NavBar/>
           <select className={styles.select} value={user ? user.type : ''} onChange={selectUser}>
             <option value=''>---</option>
