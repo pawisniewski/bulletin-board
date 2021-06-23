@@ -36,7 +36,7 @@ export const initialState = {
         id: '6',
         title: 'Post 6',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis ex aliquet, tempus libero eget, pulvinar libero. Vestibulum ante ipsum.',
-        email: 'author6@example.com',
+        email: 'author1@example.com',
       },
     ],
     loading: {

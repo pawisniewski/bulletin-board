@@ -9,6 +9,7 @@ import { getUser } from '../../../redux/userRedux.js';
 import { addPost } from '../../../redux/postsRedux.js';
 
 import { Grid, Card, CardContent, Button, TextField } from '@material-ui/core';
+import { NotFound } from '../NotFound/NotFound';
 
 import styles from './PostAdd.module.scss';
 
@@ -35,40 +36,43 @@ const Component = ({ className, children, user, addPost } ) => {
     });
   };
   
-  return (
-    <Grid container spacing={2} justify="center" className={clsx(className, styles.root)}>
-      <Grid item xs={12} sm={6} md={4} xl={2}>
-        <Card>
-          <CardContent align="center">
-            <form noValidate autoComplete='off'>
-              <TextField
-                value={newPost.title}
-                onChange={changeHandler}
-                name='title'
-                id="title"
-                label="Title"
-              />
-              <TextField
-                value={newPost.text}
-                onChange={changeHandler}
-                name='text'
-                id="text"
-                label="Text"
-                variant="outlined"
-                multiline
-                rows={5}
-                margin='normal'
-              />
-            </form>
-          </CardContent>
-        </Card>
-        <div className={styles.button}>
-          <Button onClick={submitForm} variant="contained" color="primary">Add post</Button>
-        </div>
+  if (!user) return <NotFound />;
+  else {
+    return (
+      <Grid container spacing={2} justify="center" className={clsx(className, styles.root)}>
+        <Grid item xs={12} sm={6} md={4} xl={2}>
+          <Card>
+            <CardContent align="center">
+              <form noValidate autoComplete='off'>
+                <TextField
+                  value={newPost.title}
+                  onChange={changeHandler}
+                  name='title'
+                  id="title"
+                  label="Title"
+                />
+                <TextField
+                  value={newPost.text}
+                  onChange={changeHandler}
+                  name='text'
+                  id="text"
+                  label="Text"
+                  variant="outlined"
+                  multiline
+                  rows={5}
+                  margin='normal'
+                />
+              </form>
+            </CardContent>
+          </Card>
+          <div className={styles.button}>
+            <Button onClick={submitForm} variant="contained" color="primary">Add post</Button>
+          </div>
+        </Grid>
+        {children}
       </Grid>
-      {children}
-    </Grid>
-  );
+    );
+  }
 };
 
 Component.propTypes = {

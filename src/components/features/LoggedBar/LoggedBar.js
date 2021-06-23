@@ -7,13 +7,14 @@ import clsx from 'clsx';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import Button from '@material-ui/core/Button';
+import { NavLink } from 'react-router-dom';
 
 import styles from './LoggedBar.module.scss';
 
 const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
-    <Button color="inherit" href="#">My posts</Button>
-    <Button color="inherit" href="#">Logout</Button>
+    <Button component={NavLink} to={`/my-posts`} color="inherit">My posts</Button>
+    <Button component={NavLink} to={`/`} color="inherit">Logout</Button>
     {children}
   </div>
 );
