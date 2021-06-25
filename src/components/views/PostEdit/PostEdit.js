@@ -1,37 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getUser } from '../../../redux/userRedux.js';
+import { getById } from '../../../redux/postsRedux.js';
+import { updatePost } from '../../../redux/postsRedux.js';
 
-import styles from './PostEdit.module.scss';
+import { NotFound } from '../NotFound/NotFound';
+import { PostCreator } from '../../features/PostCreator/PostCreator';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>PostEdit</h2>
-    {children}
-  </div>
-);
+// import styles from './PostEdit.module.scss';
 
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+const Component = ({ user, post, updatePost }) => {
+  const [editedPost, setEditedPost] = useState({
+    title: post ? post.title: '',
+    text: post ? post.text : '',
+  });
+
+  const changeHandler = event => {
+    setEditedPost({ ...editedPost, [event.target.name]: event.target.value });
+  };
+
+  const history = useHistory();
+
+  const submitForm = () => {
+    updatePost({
+      ...editedPost,
+      id: post.id,
+      email: post.email, 
+    });
+    setEditedPost({
+      title: '',
+      text: '',
+    });
+    history.push('/');
+  };
+  
+  const canEdit = user ? user.type === 'admin' || user.email === post.email : false;
+  if (!post || !canEdit) return <NotFound />;
+  else {
+    return (
+      <PostCreator post={editedPost} changeHandler={changeHandler} submitForm={submitForm} />
+    );
+  }
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+Component.propTypes = {
+  user: PropTypes.object,
+  post: PropTypes.object,
+  updatePost: PropTypes.func,
+};
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapStateToProps = (state, props) => ({
+  user: getUser(state),
+  post: getById(state, props.match.params.id),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const mapDispatchToProps = dispatch => ({
+  updatePost: editedPost => dispatch(updatePost(editedPost)),
+});
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as PostEdit,
-  // Container as PostEdit,
+  // Component as PostEdit,
+  Container as PostEdit,
   Component as PostEditComponent,
 };
